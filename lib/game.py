@@ -2,8 +2,6 @@
 import sys
 import logging
 
-import globals
-
 class Game(object):
     #TODO: Lots of stuff :-)
     finish = False
@@ -11,8 +9,9 @@ class Game(object):
     engine = None
     FPS = 40
     log = logging.getLogger('root') 
-    def __init__(self):
+    def __init__(self, debug=False):
         """ Actually does nothing """
+        self.debug = debug
     
     def set_engine(self, engine_name):
         if self.engine:
@@ -57,7 +56,7 @@ class Game(object):
     
     def main_loop(self):
         # Don't quit the game because of some exception unless in debug mode
-        if not globals.DEBUG:
+        if not self.debug:
             while not self.finish:
                 try:
                     self.mod.handle_input(self.engine.get_input())

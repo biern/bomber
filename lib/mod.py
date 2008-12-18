@@ -5,7 +5,6 @@ import logging
 import os
 from copy import copy
 
-from globals import MOD_CONFIG_FILENAME, MOD_DIR
 from utils import config_to_dict, parse_dict
 from board import Board
 
@@ -25,6 +24,7 @@ class Mod(object):
                                'size': lambda s: [int(i) for i in s.split('x')],
                                },
                      }
+    config_filename = 'settings.ini'
     log = logging.getLogger('mod')
     board = Board((10,10))
     def __init__(self):
@@ -39,6 +39,9 @@ class Mod(object):
         pass
     
     #--Necessary Interface--------------------------------------------------------- 
+    def dir(self):
+        return "mods/%s" % self.name
+        
     def get_board(self):
         """ Returns board object """
         return self.board
@@ -66,10 +69,10 @@ class Mod(object):
         """ Returns parsed 'settings.ini' """
         return self.config
     
-    #------------------------------------------------------------------------------ 
+    #-Helper functions------------------------------------------------------------- 
     
     def load_config(self):
-        path = os.path.join(MOD_DIR(self), MOD_CONFIG_FILENAME)
+        path = os.path.join(self.dir(), self.config_filename)
         configParser = ConfigParser()
         configParser.read(path)
         if not os.path.exists(path):
@@ -81,9 +84,10 @@ class Mod(object):
             self.config[section] = parse_dict(self.config[section],
                                               self.config_parser.get(section, {}),
                                               self.log)
-#        try:
-#            self.config['board']['size'] = [int(i) for i in self.config['board']['size'].split('x')]
-#        except Exception, msg:
-#            self.log.error("Error while parsing settings: %s" % msg)
-#        
+        
         self.log.debug("Configuration loaded")
+
+    def check_collisions(self):
+        """ Checks collisions between all tiles on board,
+        calls callbacks for collisions"""
+        pass

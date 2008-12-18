@@ -7,7 +7,6 @@ from copy import copy
 import os
 import logging
 
-from lib.globals import MOD_DIR
 from lib.engine import Engine
 from lib.utils import config_to_dict, parse_dict
 from sprite import Sprite
@@ -147,7 +146,7 @@ class SDLEngine(Engine):
         
     #-Data handling---------------------------------------------------------------- 
     def data_path(self, mod):
-        return os.path.join(MOD_DIR(mod), self.name)
+        return os.path.join(mod.dir(), self.name)
     
     def load_data(self, mod):
         """ Loads all animations for mod """

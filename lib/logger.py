@@ -3,4 +3,5 @@
 
 import logging
 
+#TODO: Complex settings, like saving debug log to files but showing errors or sth 
 logging.basicConfig(level=logging.DEBUG)
