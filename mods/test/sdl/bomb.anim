@@ -1,0 +1,6 @@
+[ticking]
+sequence: 1 1 2 2 3 3 2 2
+;repeat: 0
+; jeszcze nie obowiązuje:
+;size: 32x32
+;frames: 3
