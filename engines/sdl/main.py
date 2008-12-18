@@ -12,6 +12,7 @@ from lib.utils import config_to_dict, parse_dict
 from sprite import Sprite
 
 #TODO: Use image for background instead of tile objects - it costs loads of cpu work
+#TODO: Add support for various msgs from board class via style configuration
 
 class SDLEngine(Engine):
     log = logging.getLogger("SDLEngine")

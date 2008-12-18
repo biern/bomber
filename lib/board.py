@@ -36,6 +36,7 @@ class Board(object):
         return result
     
     def get_tiles_of_type(self, cls):
+        """ Returns all tiles of class 'cls' or inherited from 'cls'"""
         for tile in self.get_tiles():
             if isinstance(tile, cls):
                 yield tile
